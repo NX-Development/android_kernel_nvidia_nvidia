@@ -327,17 +327,21 @@ static int  scrncapt_get_info_cursor(struct tegra_dc *dc, void __user *ptr)
 			break;
 		}
 		switch (dc->cursor.colorfmt) {
-		case legacy:
+		case TEGRA_DC_CURSOR_COLORFMT_LEGACY:
 			flags |= TEGRA_DC_EXT_CURSOR_FLAGS_COLORFMT_LEGACY;
+			info.colorfmt = legacy;
 			break;
-		case r8g8b8a8: /* normal */
+		case TEGRA_DC_CURSOR_COLORFMT_R8G8B8A8: /* normal */
 			flags |= TEGRA_DC_EXT_CURSOR_FLAGS_COLORFMT_R8G8B8A8;
+			info.colorfmt = r8g8b8a8;
 			break;
-		case a1r5g5b5:
+		case TEGRA_DC_CURSOR_COLORFMT_A1R5G5B5:
 			flags |= TEGRA_DC_EXT_CURSOR_FLAGS_COLORFMT_A1R5G5B5;
+			info.colorfmt = a1r5g5b5;
 			break;
-		case a8r8g8b8:
+		case TEGRA_DC_CURSOR_COLORFMT_A8R8G8B8:
 			flags |= TEGRA_DC_EXT_CURSOR_FLAGS_COLORFMT_A8R8G8B8;
+			info.colorfmt = a8r8g8b8;
 			break;
 		default:
 			pr_warn("scrncapt: unknown dc->cursor.colorfmt:%d\n",
@@ -378,7 +382,6 @@ static int  scrncapt_get_info_cursor(struct tegra_dc *dc, void __user *ptr)
 		info.x        = dc->cursor.x;
 		info.y        = dc->cursor.y;
 		info.alpha    = dc->cursor.alpha;
-		info.colorfmt = dc->cursor.colorfmt;
 		/* reverse of CURSOR_COLOR(r,g,b) macro */
 		info.foreground.r = (dc->cursor.fg >> 0) & 0xff;
 		info.foreground.g = (dc->cursor.fg >> 8) & 0xff;

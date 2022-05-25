@@ -259,7 +259,7 @@ int tegra_dc_cursor_image(struct tegra_dc *dc,
 	enum tegra_dc_cursor_blend_format blendfmt,
 	enum tegra_dc_cursor_size size,
 	u32 fg, u32 bg, dma_addr_t phys_addr,
-	enum tegra_dc_cursor_color_format colorfmt, u32 alpha, u32 flags,
+	enum CURSOR_COLOR_FORMAT colorfmt, u32 alpha, u32 flags,
 	bool wait_for_activation);
 int tegra_dc_cursor_set(struct tegra_dc *dc, bool enable, int x, int y);
 int tegra_dc_cursor_clip(struct tegra_dc *dc, unsigned clip);
